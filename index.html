@@ -171,7 +171,7 @@ footer{text-align:center;padding:20px;color:#4a5480;font-size:12px;border-top:1p
 </div>
 
 <script>
-const K='AIzaSyD8-u5r-2DKwVTo8yT3QOUQUDpL4XghmOw';
+const K='AIzaSyBiCYNEIY8hXVWXY0PTj48v2TkVkekqBf8';
 const SYS='Tu VasuKi hai — ek friendly aur smart AI study assistant. Tu Hinglish mein baat karta hai. Students ki padhai mein madad karta hai. Concepts clearly explain karta hai, math step-by-step solve karta hai, hamesha encourage karta hai.';
 let hist=[],cnt=0,busy=false;
 
@@ -237,7 +237,7 @@ async function send(){
   hist.push({role:'user',parts:[{text}]});
   showTyping();
   try{
-    const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key='+K,{
+    const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='+K,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({system_instruction:{parts:[{text:SYS}]},contents:hist,generationConfig:{temperature:0.8,maxOutputTokens:1024}})
