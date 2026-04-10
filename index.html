@@ -106,7 +106,7 @@ footer{text-align:center;padding:20px;color:#4a5480;font-size:12px;border-top:1p
     </div>
   </div>
   <div class="features">
-    <div class="fc"><div class="fi">🧠</div><div class="ft">Super Smart AI</div><div class="fd">Gemini 2.0 Flash powered</div></div>
+    <div class="fc"><div class="fi">🧠</div><div class="ft">Super Smart AI</div><div class="fd">Llama 3 powered — super fast!</div></div>
     <div class="fc"><div class="fi">🇮🇳</div><div class="ft">Hindi Support</div><div class="fd">Hindi, English, Hinglish</div></div>
     <div class="fc"><div class="fi">⚡</div><div class="ft">Super Fast</div><div class="fd">Instant jawab milega</div></div>
     <div class="fc"><div class="fi">🆓</div><div class="ft">Free Mein Use Karo</div><div class="fd">Basic plan zero paisa</div></div>
@@ -135,7 +135,7 @@ footer{text-align:center;padding:20px;color:#4a5480;font-size:12px;border-top:1p
       </div>
     </div>
   </div>
-  <footer>Made with ❤️ in India | © 2026 VasuKi AI | Powered by Gemini</footer>
+  <footer>Made with ❤️ in India | © 2026 VasuKi AI | Powered by Groq</footer>
 </div>
 
 <div id="chat">
@@ -171,8 +171,8 @@ footer{text-align:center;padding:20px;color:#4a5480;font-size:12px;border-top:1p
 </div>
 
 <script>
-const K='AIzaSyBEr4eoNgg7_5eVNIXk_cSJNUzBKUywhOI';
-const SYS='Tu VasuKi hai — ek friendly aur smart AI study assistant. Tu Hinglish mein baat karta hai. Students ki padhai mein madad karta hai. Concepts clearly explain karta hai, math step-by-step solve karta hai, hamesha encourage karta hai.';
+const K='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';
+const SYS='Tu VasuKi hai — ek friendly aur smart AI study assistant. Tu Hinglish mein baat karta hai by default. Agar user Hindi mein likhein toh Hindi mein jawab do, English mein likhein toh English mein. Students ki padhai mein madad karta hai. Concepts clearly explain karta hai, math step-by-step solve karta hai, hamesha encourage karta hai.';
 let hist=[],cnt=0,busy=false;
 
 function showChat(){
@@ -202,7 +202,7 @@ function addMsg(role,text){
   const a=document.createElement('div');a.className='av '+role;a.textContent=role==='ai'?'🐍':'😊';
   const b=document.createElement('div');b.className='bbl';b.innerHTML=fmt(text);
   d.appendChild(a);d.appendChild(b);list.appendChild(d);
-  sb();
+  scrollB();
 }
 
 function fmt(t){
@@ -219,11 +219,11 @@ function showTyping(){
   const a=document.createElement('div');a.className='av ai';a.textContent='🐍';
   const b=document.createElement('div');b.className='bbl';
   b.innerHTML='<div class="td"><span></span><span></span><span></span></div>';
-  d.appendChild(a);d.appendChild(b);list.appendChild(d);sb();
+  d.appendChild(a);d.appendChild(b);list.appendChild(d);scrollB();
 }
 
 function removeTyping(){const t=document.getElementById('typ');if(t)t.remove();}
-function sb(){const c=document.getElementById('msgs');setTimeout(()=>c.scrollTop=c.scrollHeight,50);}
+function scrollB(){const c=document.getElementById('msgs');setTimeout(()=>c.scrollTop=c.scrollHeight,50);}
 
 async function send(){
   const inp=document.getElementById('inp');
@@ -234,26 +234,37 @@ async function send(){
   busy=true;document.getElementById('sb').disabled=true;
   cnt++;document.getElementById('mc').textContent=cnt;
   addMsg('u',text);
-  hist.push({role:'user',parts:[{text}]});
+  hist.push({role:'user',content:text});
   showTyping();
   try{
-    const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key='+K,{
+    const r=await fetch('https://api.groq.com/openai/v1/chat/completions',{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({system_instruction:{parts:[{text:SYS}]},contents:hist,generationConfig:{temperature:0.8,maxOutputTokens:1024}})
+      headers:{
+        'Content-Type':'application/json',
+        'Authorization':'Bearer '+K
+      },
+      body:JSON.stringify({
+        model:'llama-3.1-8b-instant',
+        messages:[
+          {role:'system',content:SYS},
+          ...hist
+        ],
+        temperature:0.8,
+        max_tokens:1024
+      })
     });
     const d=await r.json();
     if(d.error)throw new Error(d.error.message);
-    const t=d.candidates?.[0]?.content?.parts?.[0]?.text||'Dobara try karo!';
+    const t=d.choices?.[0]?.message?.content||'Dobara try karo!';
     removeTyping();addMsg('ai',t);
-    hist.push({role:'model',parts:[{text:t}]});
+    hist.push({role:'assistant',content:t});
   }catch(e){
     removeTyping();
     const list=document.getElementById('mlist');
     const er=document.createElement('div');
     er.style.cssText='background:rgba(255,80,80,0.1);border:1px solid rgba(255,80,80,0.3);border-radius:8px;padding:9px 13px;color:#ff8080;font-size:12px;max-width:760px;margin:0 auto;';
     er.textContent='❌ Error: '+e.message;
-    list.appendChild(er);sb();
+    list.appendChild(er);scrollB();
     cnt--;document.getElementById('mc').textContent=cnt;
   }
   busy=false;document.getElementById('sb').disabled=false;
