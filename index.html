@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VasuKi AI</title>
+<title>VasuKi AI — Apna Smart Study Buddy</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -106,7 +106,7 @@ footer{text-align:center;padding:20px;color:#4a5480;font-size:12px;border-top:1p
     </div>
   </div>
   <div class="features">
-    <div class="fc"><div class="fi">🧠</div><div class="ft">Super Smart AI</div><div class="fd">Llama 3 powered — super fast!</div></div>
+    <div class="fc"><div class="fi">🧠</div><div class="ft">Super Smart AI</div><div class="fd">Llama 3.3 70B powered!</div></div>
     <div class="fc"><div class="fi">🇮🇳</div><div class="ft">Hindi Support</div><div class="fd">Hindi, English, Hinglish</div></div>
     <div class="fc"><div class="fi">⚡</div><div class="ft">Super Fast</div><div class="fd">Instant jawab milega</div></div>
     <div class="fc"><div class="fi">🆓</div><div class="ft">Free Mein Use Karo</div><div class="fd">Basic plan zero paisa</div></div>
@@ -171,7 +171,6 @@ footer{text-align:center;padding:20px;color:#4a5480;font-size:12px;border-top:1p
 </div>
 
 <script>
-const K='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';
 const SYS='Tu VasuKi hai — ek friendly aur smart AI study assistant. Tu Hinglish mein baat karta hai by default. Agar user Hindi mein likhein toh Hindi mein jawab do, English mein likhein toh English mein. Students ki padhai mein madad karta hai. Concepts clearly explain karta hai, math step-by-step solve karta hai, hamesha encourage karta hai.';
 let hist=[],cnt=0,busy=false;
 
@@ -180,20 +179,14 @@ function showChat(){
   document.getElementById('chat').style.display='flex';
   document.getElementById('inp').focus();
 }
-
 function showLanding(){
   document.getElementById('chat').style.display='none';
   document.getElementById('landing').style.display='flex';
 }
-
 function hk(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();}}
 function ar(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,110)+'px';}
 function useSug(b){document.getElementById('inp').value=b.innerText.trim();send();}
-
-function hw(){
-  const w=document.getElementById('welcome');
-  if(w)w.style.display='none';
-}
+function hw(){const w=document.getElementById('welcome');if(w)w.style.display='none';}
 
 function addMsg(role,text){
   hw();
@@ -203,6 +196,7 @@ function addMsg(role,text){
   const b=document.createElement('div');b.className='bbl';b.innerHTML=fmt(text);
   d.appendChild(a);d.appendChild(b);list.appendChild(d);
   scrollB();
+  return b;
 }
 
 function fmt(t){
@@ -221,7 +215,6 @@ function showTyping(){
   b.innerHTML='<div class="td"><span></span><span></span><span></span></div>';
   d.appendChild(a);d.appendChild(b);list.appendChild(d);scrollB();
 }
-
 function removeTyping(){const t=document.getElementById('typ');if(t)t.remove();}
 function scrollB(){const c=document.getElementById('msgs');setTimeout(()=>c.scrollTop=c.scrollHeight,50);}
 
@@ -236,27 +229,19 @@ async function send(){
   addMsg('u',text);
   hist.push({role:'user',content:text});
   showTyping();
+
   try{
-    const r=await fetch('https://api.groq.com/openai/v1/chat/completions',{
+    const messages=[{role:'system',content:SYS},...hist];
+    const r=await fetch('/api/chat',{
       method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'Authorization':'Bearer '+K
-      },
-      body:JSON.stringify({
-        model:'llama-3.1-8b-instant',
-        messages:[
-          {role:'system',content:SYS},
-          ...hist
-        ],
-        temperature:0.8,
-        max_tokens:1024
-      })
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({messages})
     });
     const d=await r.json();
-    if(d.error)throw new Error(d.error.message);
+    if(d.error)throw new Error(d.error.message||d.error);
     const t=d.choices?.[0]?.message?.content||'Dobara try karo!';
-    removeTyping();addMsg('ai',t);
+    removeTyping();
+    addMsg('ai',t);
     hist.push({role:'assistant',content:t});
   }catch(e){
     removeTyping();
