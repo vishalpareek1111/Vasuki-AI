@@ -8,11 +8,13 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8797360639567729" crossorigin="anonymous"></script>
 <script>
 function go(id){
+  var el=document.getElementById(id);
+  if(!el)return;
   var pages=document.querySelectorAll('.page');
   for(var i=0;i<pages.length;i++)pages[i].classList.remove('active');
-  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
   window.scrollTo(0,0);
-  if(id==='chat-page')setTimeout(function(){var el=document.getElementById('inp');if(el)el.focus();},100);
+  if(id==='chat-page')setTimeout(function(){var inp=document.getElementById('inp');if(inp)inp.focus();},100);
 }
 function submitContact(){
   var n=document.getElementById('cn').value;
@@ -228,7 +230,7 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
       <li>⚡ 24/7 available</li>
     </ul>
     <h2>Contact</h2>
-    <p>Email: <strong style="color:#ff7b2c">support.vasuki@gmail.com</strong></p>
+    <p>Email: <strong style="color:#ff7b2c"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cbb8bebbbba4b9bfe5bdaab8bea0a28baca6aaa2a7e5a8a4a6">[email&#160;protected]</a></strong></p>
   </div>
   <footer>© 2026 VasuKi AI<br><button class="footer-link" onclick="go('about-page')">About</button> | <button class="footer-link" onclick="go('privacy-page')">Privacy</button> | <button class="footer-link" onclick="go('contact-page')">Contact</button></footer>
 </div>
@@ -256,7 +258,7 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
     <h2>Third-Party Services</h2>
     <ul><li><strong>Groq AI:</strong> Chat processing</li><li><strong>Tavily:</strong> Web search</li><li><strong>Google AdSense:</strong> Ads</li><li><strong>Vercel:</strong> Hosting</li></ul>
     <h2>Contact</h2>
-    <p>Email: <strong style="color:#ff7b2c">support.vasuki@gmail.com</strong></p>
+    <p>Email: <strong style="color:#ff7b2c"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2e5d5b5e5e415c5a00584f5d5b45476e49434f4742004d4143">[email&#160;protected]</a></strong></p>
   </div>
   <footer>© 2026 VasuKi AI<br><button class="footer-link" onclick="go('about-page')">About</button> | <button class="footer-link" onclick="go('privacy-page')">Privacy</button> | <button class="footer-link" onclick="go('contact-page')">Contact</button></footer>
 </div>
@@ -275,11 +277,199 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
   <div class="content-wrap">
     <h1>Contact Us</h1>
     <p class="sub">Koi bhi sawaal ho — hum yahan hain!</p>
-    <div class="hbox"><p>📧 Email: <strong>support.vasuki@gmail.com</strong></p></div>
+    <div class="hbox"><p>📧 Email: <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="33404643435c41471d45524046585a73545e525a5f1d505c5e">[email&#160;protected]</a></strong></p></div>
     <div class="cform">
       <h2 style="margin-top:0;color:#e2e8ff">Message Bhejo</h2>
       <div class="fg"><label>Naam</label><input type="text" id="cn" placeholder="Apna naam"></div>
       <div class="fg"><label>Email</label><input type="email" id="ce" placeholder="email@example.com"></div>
       <div class="fg"><label>Subject</label><input type="text" id="cs" placeholder="Subject"></div>
       <div class="fg"><label>Message</label><textarea id="cm" placeholder="Apna message..."></textarea></div>
-      <button class="
+      <button class="sbtn" onclick="submitContact()">📨 Bhejo</button>
+    </div>
+  </div>
+  <footer>© 2026 VasuKi AI<br><button class="footer-link" onclick="go('about-page')">About</button> | <button class="footer-link" onclick="go('privacy-page')">Privacy</button> | <button class="footer-link" onclick="go('contact-page')">Contact</button></footer>
+</div>
+
+<!-- CHAT -->
+<div id="chat-page" class="page">
+  <div class="cnav">
+    <div class="cbrand" onclick="go('home-page')">🐍 VASUKI</div>
+    <div class="ob"><div class="od"></div>Online</div>
+    <button class="bbtn" onclick="go('home-page')">← Back</button>
+  </div>
+  <div id="msgs">
+    <div id="welcome">
+      <h2>Namaste! Main hoon VasuKi 🐍</h2>
+      <p>Tera smart study buddy! Type karo ya 🎤 mic se bolo!</p>
+      <div class="suggs">
+        <button class="sg" onclick="useSug(this)"><span class="si">📚</span>Photosynthesis explain karo</button>
+        <button class="sg" onclick="useSug(this)"><span class="si">🧮</span>Quadratic equation sikhao</button>
+        <button class="sg" onclick="useSug(this)"><span class="si">🏏</span>IPL ka score kya hai?</button>
+        <button class="sg" onclick="useSug(this)"><span class="si">🌤️</span>Aaj ka mausam kaisa hai?</button>
+      </div>
+    </div>
+    <div id="mlist"></div>
+  </div>
+  <div id="ia">
+    <div id="voice-status"></div>
+    <div class="lb">
+      <div class="lt">Messages: <span id="mc">0</span>/20 aaj ke liye</div>
+      <div class="ul" onclick="go('home-page')">👑 Premium lo!</div>
+    </div>
+    <div class="ir">
+      <textarea id="inp" placeholder="Type karo ya mic se bolo... 🎤" rows="1" onkeydown="hk(event)" oninput="ar(this)"></textarea>
+      <button id="vbtn" onclick="toggleVoice()" title="Voice Input">🎤</button>
+      <button id="sb" onclick="send()"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
+    </div>
+    <div class="if">VasuKi galat bhi ho sakta hai — verify karo ✨</div>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+var SYS='Tu VasuKi hai — ek friendly aur smart AI study assistant. Tu Hinglish mein baat karta hai by default. Agar user Hindi mein likhein toh Hindi mein jawab do, English mein likhein toh English mein. Students ki padhai mein madad karta hai. Concepts clearly explain karta hai, math step-by-step solve karta hai, hamesha encourage karta hai. Agar real-time search results mile toh unhe use karo accurate answer dene ke liye.';
+var hist=[],cnt=0,busy=false;
+var recognition=null,isListening=false;
+
+// Voice Input Setup
+function setupVoice(){
+  var SpeechRec=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SpeechRec){
+    document.getElementById('vbtn').style.display='none';
+    return;
+  }
+  recognition=new SpeechRec();
+  recognition.continuous=false;
+  recognition.interimResults=true;
+  recognition.lang='hi-IN';
+
+  recognition.onstart=function(){
+    isListening=true;
+    document.getElementById('vbtn').classList.add('listening');
+    document.getElementById('vbtn').textContent='🔴';
+    document.getElementById('voice-status').textContent='🎤 Bol raha hoon... (Hindi/English dono chal jayega)';
+  };
+
+  recognition.onresult=function(e){
+    var transcript='';
+    for(var i=e.resultIndex;i<e.results.length;i++){
+      transcript+=e.results[i][0].transcript;
+    }
+    document.getElementById('inp').value=transcript;
+    document.getElementById('voice-status').textContent='🎤 Suna: "'+transcript+'"';
+    ar(document.getElementById('inp'));
+  };
+
+  recognition.onend=function(){
+    isListening=false;
+    document.getElementById('vbtn').classList.remove('listening');
+    document.getElementById('vbtn').textContent='🎤';
+    var text=document.getElementById('inp').value.trim();
+    if(text){
+      document.getElementById('voice-status').textContent='';
+      setTimeout(function(){send();},500);
+    } else {
+      document.getElementById('voice-status').textContent='';
+    }
+  };
+
+  recognition.onerror=function(e){
+    isListening=false;
+    document.getElementById('vbtn').classList.remove('listening');
+    document.getElementById('vbtn').textContent='🎤';
+    document.getElementById('voice-status').textContent='❌ Mic permission do!';
+    setTimeout(function(){document.getElementById('voice-status').textContent='';},3000);
+  };
+}
+
+function toggleVoice(){
+  if(!recognition){setupVoice();}
+  if(!recognition){alert('Tera browser voice support nahi karta!');return;}
+  if(isListening){
+    recognition.stop();
+  } else {
+    recognition.lang='hi-IN';
+    recognition.start();
+  }
+}
+
+function hk(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();}}
+function ar(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,110)+'px';}
+function useSug(b){document.getElementById('inp').value=b.innerText.trim();send();}
+function hw(){var w=document.getElementById('welcome');if(w)w.style.display='none';}
+
+function addMsg(role,text){
+  hw();
+  var list=document.getElementById('mlist');
+  var d=document.createElement('div');d.className='m '+role;
+  var a=document.createElement('div');a.className='av '+role;a.textContent=role==='ai'?'🐍':'😊';
+  var b=document.createElement('div');b.className='bbl';
+  if(text)b.innerHTML=fmt(text);
+  d.appendChild(a);d.appendChild(b);list.appendChild(d);
+  scrollB();return b;
+}
+
+function fmt(t){
+  t=t.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+  t=t.replace(/`([^`]+)`/g,'<code style="background:rgba(255,123,44,0.1);border-radius:4px;padding:1px 5px;font-size:12px;color:#00e5cc">$1</code>');
+  t=t.replace(/\n/g,'<br>');
+  return t;
+}
+
+function showTyping(){
+  hw();
+  var list=document.getElementById('mlist');
+  var d=document.createElement('div');d.className='m ai';d.id='typ';
+  var a=document.createElement('div');a.className='av ai';a.textContent='🐍';
+  var b=document.createElement('div');b.className='bbl';
+  b.innerHTML='<div class="td"><span></span><span></span><span></span></div>';
+  d.appendChild(a);d.appendChild(b);list.appendChild(d);scrollB();
+}
+function removeTyping(){var t=document.getElementById('typ');if(t)t.remove();}
+function scrollB(){var c=document.getElementById('msgs');setTimeout(function(){c.scrollTop=c.scrollHeight;},50);}
+
+function typeText(bubble,text){
+  bubble.innerHTML='';
+  var i=0,displayed='';
+  return new Promise(function(resolve){
+    var iv=setInterval(function(){
+      if(i<text.length){
+        displayed+=text[i];
+        bubble.innerHTML=fmt(displayed)+'<span class="cursor"></span>';
+        i++;scrollB();
+      }else{
+        bubble.innerHTML=fmt(displayed);
+        clearInterval(iv);resolve();
+      }
+    },15);
+  });
+}
+
+async function send(){
+  var inp=document.getElementById('inp');
+  var text=inp.value.trim();
+  if(!text||busy)return;
+  if(cnt>=20){alert('20 free messages khatam! Premium lo sirf ₹49/month!');go('home-page');return;}
+  inp.value='';inp.style.height='auto';
+  busy=true;document.getElementById('sb').disabled=true;
+  cnt++;document.getElementById('mc').textContent=cnt;
+  addMsg('u',text);
+  hist.push({role:'user',content:text});
+  showTyping();
+  try{
+    var r=await fetch('/api/chat',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({messages:[{role:'system',content:SYS}].concat(hist)})
+    });
+    var d=await r.json();
+    if(d.error)throw new Error(d.error.message||d.error);
+    var t=d.choices&&d.choices[0]&&d.choices[0].message&&d.choices[0].message.content?d.choices[0].message.content:'Dobara try karo!';
+    removeTyping();
+    var bubble=addMsg('ai','');
+    await typeText(bubble,t);
+    hist.push({role:'assistant',content:t});
+  }catch(e){
+    removeTyping();
+    var list=document.getElementById('mlist');
+    var er=document.createElement('div');
+    er.style.cssText='background:rgb
