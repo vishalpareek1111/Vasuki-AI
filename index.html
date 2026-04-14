@@ -5,24 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VasuKi AI — Apna Smart Study Buddy</title>
 <meta name="description" content="VasuKi AI is a free AI-powered study assistant for Indian students. Chat in Hindi, English, or Hinglish!">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8797360639567729" crossorigin="anonymous"></script>
-<script>
-function go(id){
-  var pages=document.querySelectorAll('.page');
-  for(var i=0;i<pages.length;i++)pages[i].classList.remove('active');
-  document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
-  if(id==='chat-page')setTimeout(function(){var el=document.getElementById('inp');if(el)el.focus();},100);
-}
-function submitContact(){
-  var n=document.getElementById('cn').value;
-  var e=document.getElementById('ce').value;
-  var s=document.getElementById('cs').value;
-  var m=document.getElementById('cm').value;
-  if(!n||!e||!m){alert('Sab fields bharo!');return;}
-  window.location.href='mailto:support.vasuki@gmail.com?subject='+encodeURIComponent(s||'VasuKi Contact')+'&body='+encodeURIComponent('Name: '+n+'\nEmail: '+e+'\n\nMessage:\n'+m);
-}
-</script>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -30,12 +12,16 @@ body{background:#060818;color:#e2e8ff;font-family:'Nunito',sans-serif;overflow-x
 .page{display:none;min-height:100vh;flex-direction:column}
 .page.active{display:flex}
 #chat-page{height:100vh;overflow:hidden}
+
+/* NAV */
 nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:rgba(6,8,24,0.95);backdrop-filter:blur(20px);border-bottom:1px solid #1f2845;position:sticky;top:0;z-index:99}
 .brand{font-family:'Cinzel',serif;font-size:18px;font-weight:900;letter-spacing:2px;background:linear-gradient(90deg,#ff7b2c,#ffaa5c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;cursor:pointer;white-space:nowrap}
 .nav-links{display:flex;gap:16px;align-items:center}
-.nav-link{color:#8892b0;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;background:none;border:none;font-family:'Nunito',sans-serif;padding:4px 8px;border-radius:6px}
-.nav-link:hover{color:#ff7b2c}
+.nav-link{color:#8892b0;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;transition:color 0.2s;white-space:nowrap;background:none;border:none;font-family:'Nunito',sans-serif;padding:4px 8px;border-radius:6px}
+.nav-link:hover{color:#ff7b2c;background:rgba(255,123,44,0.08)}
 .nbtn{background:linear-gradient(135deg,#ff7b2c,#e05500);color:#fff;border:none;border-radius:10px;padding:8px 18px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+
+/* HERO */
 .hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 20px;gap:20px}
 .hero h1{font-family:'Cinzel',serif;font-size:clamp(28px,6vw,60px);font-weight:900;letter-spacing:3px;background:linear-gradient(135deg,#ff7b2c,#ffaa5c,#fff5e0);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hero p{color:#4a5480;font-size:clamp(14px,2vw,18px);max-width:440px;line-height:1.6}
@@ -43,11 +29,15 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:14px 2
 .btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 .btn1{background:linear-gradient(135deg,#ff7b2c,#e05500);color:#fff;border:none;border-radius:12px;padding:13px 32px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 6px 24px rgba(255,123,44,0.35)}
 .btn2{background:transparent;color:#e2e8ff;border:1.5px solid #1f2845;border-radius:12px;padding:13px 32px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;cursor:pointer}
+
+/* FEATURES */
 .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;padding:0 24px 50px;max-width:860px;margin:0 auto;width:100%}
 .fc{background:#0e1225;border:1px solid #1f2845;border-radius:16px;padding:20px}
 .fi{font-size:26px;margin-bottom:10px}
 .ft{font-size:14px;font-weight:700;color:#fff;margin-bottom:4px}
 .fd{font-size:12px;color:#4a5480;line-height:1.5}
+
+/* PRICING */
 .section-title{text-align:center;font-family:'Cinzel',serif;font-size:clamp(18px,4vw,28px);font-weight:700;color:#fff;padding:16px 0 6px;letter-spacing:2px}
 .section-sub{text-align:center;color:#4a5480;font-size:13px;margin-bottom:24px}
 .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;padding:0 24px 60px;max-width:560px;margin:0 auto;width:100%}
@@ -65,9 +55,13 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:14px 2
 .pbtn{width:100%;padding:11px;border-radius:10px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;cursor:pointer;border:none}
 .pbtn.f{background:#161b30;color:#e2e8ff;border:1px solid #1f2845}
 .pbtn.p{background:linear-gradient(135deg,#ff7b2c,#e05500);color:#fff}
+
+/* FOOTER */
 footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-top:1px solid #1f2845;line-height:2}
-.footer-link{color:#4a5480;cursor:pointer;margin:0 8px;background:none;border:none;font-family:'Nunito',sans-serif;font-size:12px}
+.footer-link{color:#4a5480;text-decoration:none;cursor:pointer;margin:0 8px;background:none;border:none;font-family:'Nunito',sans-serif;font-size:12px}
 .footer-link:hover{color:#ff7b2c}
+
+/* CONTENT PAGES */
 .content-wrap{padding:50px 24px;max-width:780px;margin:0 auto;width:100%;flex:1}
 .content-wrap h1{font-family:'Cinzel',serif;font-size:clamp(22px,5vw,36px);font-weight:900;letter-spacing:2px;background:linear-gradient(90deg,#ff7b2c,#ffaa5c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px}
 .content-wrap .sub{color:#4a5480;font-size:13px;margin-bottom:36px;padding-bottom:18px;border-bottom:1px solid #1f2845}
@@ -77,18 +71,25 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
 .content-wrap ul li{margin-bottom:6px}
 .hbox{background:#0e1225;border:1px solid rgba(255,123,44,0.25);border-radius:12px;padding:18px 20px;margin:18px 0}
 .hbox p{color:#e2e8ff;margin:0;font-size:14px}
+
+/* CONTACT FORM */
 .cform{background:#0e1225;border:1px solid #1f2845;border-radius:16px;padding:26px;margin-top:20px}
 .fg{margin-bottom:16px}
 .fg label{display:block;font-size:13px;font-weight:600;color:#e2e8ff;margin-bottom:7px}
-.fg input,.fg textarea{width:100%;background:#161b30;border:1px solid #1f2845;border-radius:10px;padding:11px 15px;color:#e2e8ff;font-family:'Nunito',sans-serif;font-size:14px;outline:none}
+.fg input,.fg textarea{width:100%;background:#161b30;border:1px solid #1f2845;border-radius:10px;padding:11px 15px;color:#e2e8ff;font-family:'Nunito',sans-serif;font-size:14px;outline:none;transition:border-color 0.2s}
+.fg input:focus,.fg textarea:focus{border-color:rgba(255,123,44,0.4)}
 .fg textarea{resize:vertical;min-height:110px}
 .sbtn{background:linear-gradient(135deg,#ff7b2c,#e05500);color:#fff;border:none;border-radius:10px;padding:12px 32px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;cursor:pointer;width:100%}
+
+/* CHAT NAV */
 .cnav{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:rgba(6,8,24,0.98);border-bottom:1px solid #1f2845;flex-shrink:0}
 .cbrand{font-family:'Cinzel',serif;font-size:16px;font-weight:900;letter-spacing:2px;background:linear-gradient(90deg,#ff7b2c,#ffaa5c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;cursor:pointer}
 .ob{display:flex;align-items:center;gap:5px;background:rgba(0,229,204,0.08);border:1px solid rgba(0,229,204,0.2);border-radius:20px;padding:4px 12px;font-size:12px;color:#00e5cc;font-weight:600}
 .od{width:6px;height:6px;border-radius:50%;background:#00e5cc;animation:bl 2s infinite}
 @keyframes bl{0%,100%{opacity:1}50%{opacity:0.3}}
 .bbtn{background:#161b30;border:1px solid #1f2845;border-radius:8px;padding:6px 14px;color:#e2e8ff;font-family:'Nunito',sans-serif;font-size:12px;font-weight:600;cursor:pointer}
+
+/* CHAT MESSAGES */
 #msgs{flex:1;overflow-y:auto;padding:16px;scroll-behavior:smooth}
 #msgs::-webkit-scrollbar{width:4px}
 #msgs::-webkit-scrollbar-thumb{background:#1f2845;border-radius:4px}
@@ -96,7 +97,8 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
 #welcome h2{font-family:'Cinzel',serif;font-size:clamp(18px,4vw,26px);font-weight:900;letter-spacing:2px;background:linear-gradient(90deg,#ff7b2c,#ffaa5c);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 #welcome p{color:#4a5480;font-size:13px;max-width:360px;line-height:1.6}
 .suggs{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;max-width:440px;width:100%;margin-top:6px}
-.sg{background:#0e1225;border:1px solid #1f2845;border-radius:10px;padding:11px 13px;color:#e2e8ff;font-family:'Nunito',sans-serif;font-size:11px;cursor:pointer;text-align:left;line-height:1.4}
+.sg{background:#0e1225;border:1px solid #1f2845;border-radius:10px;padding:11px 13px;color:#e2e8ff;font-family:'Nunito',sans-serif;font-size:11px;cursor:pointer;text-align:left;transition:all 0.2s;line-height:1.4}
+.sg:hover{border-color:rgba(255,123,44,0.4)}
 .sg .si{display:block;font-size:16px;margin-bottom:3px}
 #mlist{display:flex;flex-direction:column;gap:14px;max-width:760px;margin:0 auto}
 .m{display:flex;gap:9px;animation:mp 0.3s ease}
@@ -115,6 +117,8 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
 .td span{width:6px;height:6px;border-radius:50%;background:#ff7b2c;animation:dt 1.4s infinite}
 .td span:nth-child(2){animation-delay:0.2s}.td span:nth-child(3){animation-delay:0.4s}
 @keyframes dt{0%,60%,100%{transform:translateY(0);opacity:0.4}30%{transform:translateY(-5px);opacity:1}}
+
+/* INPUT */
 #ia{padding:12px 14px 16px;background:rgba(6,8,24,0.98);border-top:1px solid #1f2845;flex-shrink:0}
 .lb{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;padding:0 2px}
 .lt{font-size:11px;color:#4a5480}
@@ -128,12 +132,24 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
 #sb:hover:not(:disabled){transform:scale(1.08)}#sb:disabled{opacity:0.4;cursor:not-allowed}
 #sb svg{width:14px;height:14px;fill:#fff}
 .if{text-align:center;font-size:11px;color:#4a5480;margin-top:7px}
-@media(max-width:600px){nav{padding:12px 14px;gap:8px;flex-wrap:wrap}.nav-links{gap:8px}.nav-link{font-size:12px}.nbtn{padding:7px 14px;font-size:12px}.hero{padding:50px 14px 30px}.features,.plans{padding:0 14px 50px}.suggs{grid-template-columns:1fr}.content-wrap{padding:30px 14px}#ia{padding:10px 12px 14px}}
+
+@media(max-width:600px){
+  nav{padding:12px 14px;gap:8px;flex-wrap:wrap}
+  .nav-links{gap:8px}
+  .nav-link{font-size:12px;padding:3px 6px}
+  .nbtn{padding:7px 14px;font-size:12px}
+  .hero{padding:50px 14px 30px}
+  .features,.plans{padding:0 14px 50px}
+  .suggs{grid-template-columns:1fr}
+  .content-wrap{padding:30px 14px}
+  #ia{padding:10px 12px 14px}
+}
 </style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8797360639567729" crossorigin="anonymous"></script>
 </head>
 <body>
 
-<!-- HOME -->
+<!-- ══ HOME ══ -->
 <div id="home-page" class="page active">
   <nav>
     <div class="brand" onclick="go('home-page')">🐍 VASUKI AI</div>
@@ -190,7 +206,7 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
   </footer>
 </div>
 
-<!-- ABOUT -->
+<!-- ══ ABOUT ══ -->
 <div id="about-page" class="page">
   <nav>
     <div class="brand" onclick="go('home-page')">🐍 VASUKI AI</div>
@@ -206,28 +222,30 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
     <p class="sub">Tera smart study buddy — Indian students ke liye banaya gaya!</p>
     <div class="hbox"><p>🐍 <strong>VasuKi AI</strong> ek free AI-powered study assistant hai jo Indian students ki padhai mein madad karta hai. Hindi, English, aur Hinglish mein baat kar sakte ho!</p></div>
     <h2>Hamara Mission</h2>
-    <p>India mein crores students hain jinhe padhai mein help chahiye. VasuKi AI har student ko free mein ek smart study buddy dena chahta hai jo 24/7 available ho!</p>
+    <p>India mein crores students hain jinhe padhai mein help chahiye. Lekin acche tutors bahut mehenge hain. VasuKi AI har student ko free mein ek smart study buddy dena chahta hai — jo 24/7 available ho, koi bhi subject samjhaye, aur bilkul apni bhasha mein baat kare!</p>
     <h2>VasuKi AI Kya Kar Sakta Hai?</h2>
     <ul>
-      <li>📚 Koi bhi subject explain karna</li>
+      <li>📚 Koi bhi subject explain karna — Math, Science, History, English</li>
       <li>🧮 Math problems step-by-step solve karna</li>
       <li>📝 Essay aur writing mein help karna</li>
       <li>💡 Exam tips aur study strategies dena</li>
-      <li>🇮🇳 Hindi, English, Hinglish support</li>
-      <li>⚡ 24/7 available</li>
+      <li>🇮🇳 Hindi, English, Hinglish mein baat karna</li>
+      <li>⚡ 24/7 available — kabhi bhi pooch sakte ho</li>
     </ul>
-    <h2>Contact</h2>
-    <p>Email: <strong style="color:#ff7b2c">support.vasuki@gmail.com</strong></p>
+    <h2>Technology</h2>
+    <p>VasuKi AI Groq ke Llama 3.3 70B model se powered hai — yeh ek state-of-the-art AI model hai jo bahut fast aur accurate responses deta hai.</p>
+    <h2>Contact Karo</h2>
+    <p>Koi bhi sawaal ho toh humein email karo: <strong style="color:#ff7b2c"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="45363035352a37316b332436302e2c052228242c296b262a28">[email&#160;protected]</a></strong></p>
   </div>
   <footer>
-    © 2026 VasuKi AI<br>
+    © 2026 VasuKi AI — Made with ❤️ in India<br>
     <button class="footer-link" onclick="go('about-page')">About</button> |
     <button class="footer-link" onclick="go('privacy-page')">Privacy Policy</button> |
     <button class="footer-link" onclick="go('contact-page')">Contact</button>
   </footer>
 </div>
 
-<!-- PRIVACY -->
+<!-- ══ PRIVACY ══ -->
 <div id="privacy-page" class="page">
   <nav>
     <div class="brand" onclick="go('home-page')">🐍 VASUKI AI</div>
@@ -242,38 +260,40 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
     <h1>Privacy Policy</h1>
     <p class="sub">Last updated: April 2026</p>
     <h2>Information We Collect</h2>
-    <p>VasuKi AI collects minimal information. We do not require registration to use our service.</p>
+    <p>VasuKi AI collects minimal information to provide our services. We do not require user registration or personal information to use our basic chat service.</p>
     <ul>
-      <li>Chat messages (processed to generate responses)</li>
-      <li>Basic usage analytics</li>
-      <li>Contact form information</li>
+      <li>Chat messages you send (processed to generate responses)</li>
+      <li>Basic usage analytics (page views, session duration)</li>
+      <li>Information you provide through our contact form</li>
     </ul>
     <h2>How We Use Your Information</h2>
     <ul>
-      <li>Provide our AI chat service</li>
-      <li>Display relevant advertisements via Google AdSense</li>
-      <li>Respond to support requests</li>
+      <li>Provide and improve our AI chat service</li>
+      <li>Respond to your queries and support requests</li>
+      <li>Display relevant advertisements (Google AdSense)</li>
     </ul>
     <h2>Data Storage</h2>
-    <p>Chat conversations are not permanently stored. History clears when you close the browser.</p>
+    <p>Chat conversations are not permanently stored. Each session is independent and your chat history is cleared when you close the browser tab.</p>
     <h2>Third-Party Services</h2>
     <ul>
-      <li><strong>Groq AI:</strong> For processing messages</li>
-      <li><strong>Google AdSense:</strong> For advertisements</li>
-      <li><strong>Vercel:</strong> For hosting</li>
+      <li><strong>Groq AI:</strong> For processing chat messages</li>
+      <li><strong>Google AdSense:</strong> For displaying advertisements</li>
+      <li><strong>Vercel:</strong> For website hosting</li>
     </ul>
-    <h2>Contact</h2>
-    <p>Email: <strong style="color:#ff7b2c">support.vasuki@gmail.com</strong></p>
+    <h2>Cookies</h2>
+    <p>We use cookies to improve your experience. Google AdSense may use cookies to display relevant ads.</p>
+    <h2>Contact Us</h2>
+    <p>Questions? Email us: <strong style="color:#ff7b2c"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e89b9d9898879a9cc69e899b9d8381a88f85898184c68b8785">[email&#160;protected]</a></strong></p>
   </div>
   <footer>
-    © 2026 VasuKi AI<br>
+    © 2026 VasuKi AI — Made with ❤️ in India<br>
     <button class="footer-link" onclick="go('about-page')">About</button> |
     <button class="footer-link" onclick="go('privacy-page')">Privacy Policy</button> |
     <button class="footer-link" onclick="go('contact-page')">Contact</button>
   </footer>
 </div>
 
-<!-- CONTACT -->
+<!-- ══ CONTACT ══ -->
 <div id="contact-page" class="page">
   <nav>
     <div class="brand" onclick="go('home-page')">🐍 VASUKI AI</div>
@@ -287,17 +307,4 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
   <div class="content-wrap">
     <h1>Contact Us</h1>
     <p class="sub">Koi bhi sawaal ho — hum yahan hain!</p>
-    <div class="hbox"><p>📧 Email: <strong>support.vasuki@gmail.com</strong></p></div>
-    <div class="cform">
-      <h2 style="margin-top:0;color:#e2e8ff">Message Bhejo</h2>
-      <div class="fg"><label>Naam</label><input type="text" id="cn" placeholder="Apna naam"></div>
-      <div class="fg"><label>Email</label><input type="email" id="ce" placeholder="email@example.com"></div>
-      <div class="fg"><label>Subject</label><input type="text" id="cs" placeholder="Subject"></div>
-      <div class="fg"><label>Message</label><textarea id="cm" placeholder="Apna message..."></textarea></div>
-      <button class="sbtn" onclick="submitContact()">📨 Bhejo</button>
-    </div>
-  </div>
-  <footer>
-    © 2026 VasuKi AI<br>
-    <button class="footer-link" onclick="go('about-page')">About</button> |
-    <button class="footer-link" onclick="go('privac
+    <div class="hbox"><p>📧 Direct email: <strong><a href="/cdn-cgi/l/emai
