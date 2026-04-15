@@ -8,12 +8,15 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8797360639567729" crossorigin="anonymous"></script>
 <script>
 function go(id){
+  var el=document.getElementById(id);
+  if(!el){console.log('Page not found:',id);return;}
   var pages=document.querySelectorAll('.page');
   for(var i=0;i<pages.length;i++)pages[i].classList.remove('active');
-  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
   window.scrollTo(0,0);
-  if(id==='chat-page')setTimeout(function(){var el=document.getElementById('inp');if(el)el.focus();},100);
+  if(id==='chat-page')setTimeout(function(){var inp=document.getElementById('inp');if(inp)inp.focus();},100);
 }
+  
 function submitContact(){
   var n=document.getElementById('cn').value;
   var e=document.getElementById('ce').value;
