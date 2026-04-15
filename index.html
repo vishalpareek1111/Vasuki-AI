@@ -6,26 +6,6 @@
 <title>VasuKi AI — Apna Smart Study Buddy</title>
 <meta name="description" content="VasuKi AI is a free AI-powered study assistant for Indian students. Chat in Hindi, English, or Hinglish!">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8797360639567729" crossorigin="anonymous"></script>
-<script>
-function go(id){
-  var el=document.getElementById(id);
-  if(!el){console.log('Page not found:',id);return;}
-  var pages=document.querySelectorAll('.page');
-  for(var i=0;i<pages.length;i++)pages[i].classList.remove('active');
-  el.classList.add('active');
-  window.scrollTo(0,0);
-  if(id==='chat-page')setTimeout(function(){var inp=document.getElementById('inp');if(inp)inp.focus();},100);
-}
-  
-function submitContact(){
-  var n=document.getElementById('cn').value;
-  var e=document.getElementById('ce').value;
-  var s=document.getElementById('cs').value;
-  var m=document.getElementById('cm').value;
-  if(!n||!e||!m){alert('Sab fields bharo!');return;}
-  window.location.href='mailto:support.vasuki@gmail.com?subject='+encodeURIComponent(s||'VasuKi Contact')+'&body='+encodeURIComponent('Name: '+n+'\nEmail: '+e+'\n\nMessage:\n'+m);
-}
-</script>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -86,6 +66,7 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
 .fg input,.fg textarea{width:100%;background:#161b30;border:1px solid #1f2845;border-radius:10px;padding:11px 15px;color:#e2e8ff;font-family:'Nunito',sans-serif;font-size:14px;outline:none}
 .fg textarea{resize:vertical;min-height:110px}
 .sbtn{background:linear-gradient(135deg,#ff7b2c,#e05500);color:#fff;border:none;border-radius:10px;padding:12px 32px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;cursor:pointer;width:100%}
+/* CHAT PAGE */
 .cnav{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:rgba(6,8,24,0.98);border-bottom:1px solid #1f2845;flex-shrink:0}
 .cbrand{font-family:'Cinzel',serif;font-size:16px;font-weight:900;letter-spacing:2px;background:linear-gradient(90deg,#ff7b2c,#ffaa5c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;cursor:pointer}
 .ob{display:flex;align-items:center;gap:5px;background:rgba(0,229,204,0.08);border:1px solid rgba(0,229,204,0.2);border-radius:20px;padding:4px 12px;font-size:12px;color:#00e5cc;font-weight:600}
@@ -100,6 +81,7 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
 #welcome p{color:#4a5480;font-size:13px;max-width:360px;line-height:1.6}
 .suggs{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;max-width:440px;width:100%;margin-top:6px}
 .sg{background:#0e1225;border:1px solid #1f2845;border-radius:10px;padding:11px 13px;color:#e2e8ff;font-family:'Nunito',sans-serif;font-size:11px;cursor:pointer;text-align:left;line-height:1.4}
+.sg:hover{border-color:rgba(255,123,44,0.4);background:#12172a}
 .sg .si{display:block;font-size:16px;margin-bottom:3px}
 #mlist{display:flex;flex-direction:column;gap:14px;max-width:760px;margin:0 auto}
 .m{display:flex;gap:9px;animation:mp 0.3s ease}
@@ -122,13 +104,14 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
 .lb{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;padding:0 2px}
 .lt{font-size:11px;color:#4a5480}
 .lt span{color:#ff7b2c;font-weight:700}
-.ul{font-size:11px;color:#00e5cc;cursor:pointer;font-weight:600;text-decoration:underline}
+.ul{font-size:11px;color:#00e5cc;cursor:pointer;font-weight:600;text-decoration:underline;background:none;border:none;font-family:'Nunito',sans-serif}
 .ir{display:flex;gap:9px;align-items:flex-end;background:#0e1225;border:1px solid #1f2845;border-radius:14px;padding:9px 13px;max-width:760px;margin:0 auto;transition:border-color 0.2s}
 .ir:focus-within{border-color:rgba(255,123,44,0.4)}
 #inp{flex:1;background:none;border:none;outline:none;color:#e2e8ff;font-family:'Nunito',sans-serif;font-size:14px;resize:none;max-height:110px;line-height:1.5;min-height:22px}
 #inp::placeholder{color:#4a5480}
 #sb{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#ff7b2c,#c94400);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s}
-#sb:hover:not(:disabled){transform:scale(1.08)}#sb:disabled{opacity:0.4;cursor:not-allowed}
+#sb:hover:not(:disabled){transform:scale(1.08)}
+#sb:disabled{opacity:0.4;cursor:not-allowed}
 #sb svg{width:14px;height:14px;fill:#fff}
 .if{text-align:center;font-size:11px;color:#4a5480;margin-top:7px}
 @media(max-width:600px){nav{padding:12px 14px;gap:8px;flex-wrap:wrap}.nav-links{gap:8px}.nav-link{font-size:12px}.nbtn{padding:7px 14px;font-size:12px}.hero{padding:50px 14px 30px}.features,.plans{padding:0 14px 50px}.suggs{grid-template-columns:1fr}.content-wrap{padding:30px 14px}#ia{padding:10px 12px 14px}}
@@ -136,7 +119,7 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
 </head>
 <body>
 
-<!-- HOME -->
+<!-- HOME PAGE -->
 <div id="home-page" class="page active">
   <nav>
     <div class="brand" onclick="go('home-page')">🐍 VASUKI AI</div>
@@ -193,7 +176,42 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
   </footer>
 </div>
 
-<!-- ABOUT -->
+<!-- CHAT PAGE -->
+<div id="chat-page" class="page">
+  <div class="cnav">
+    <div class="cbrand" onclick="go('home-page')">🐍 VASUKI AI</div>
+    <div class="ob"><div class="od"></div> Online</div>
+    <button class="bbtn" onclick="go('home-page')">← Back</button>
+  </div>
+  <div id="msgs">
+    <div id="welcome">
+      <h2>Namaste! 🙏</h2>
+      <p>Main VasuKi AI hoon — tera smart study buddy! Koi bhi sawaal pucho, Hindi ya English mein.</p>
+      <div class="suggs">
+        <button class="sg" onclick="sendSugg(this)"><span class="si">🧮</span>Math solve karo</button>
+        <button class="sg" onclick="sendSugg(this)"><span class="si">📚</span>Science explain karo</button>
+        <button class="sg" onclick="sendSugg(this)"><span class="si">📝</span>Essay likhne mein help karo</button>
+        <button class="sg" onclick="sendSugg(this)"><span class="si">💡</span>Exam tips do</button>
+      </div>
+    </div>
+    <div id="mlist"></div>
+  </div>
+  <div id="ia">
+    <div class="lb">
+      <span class="lt">Messages: <span id="mc">0</span>/20</span>
+      <button class="ul" onclick="resetCount()">Reset Count</button>
+    </div>
+    <div class="ir">
+      <textarea id="inp" placeholder="Koi bhi sawaal pucho... (Hindi/English)" rows="1"></textarea>
+      <button id="sb" onclick="sendMsg()" title="Send">
+        <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+      </button>
+    </div>
+    <div class="if">VasuKi AI • Powered by Groq Llama 3.3 70B</div>
+  </div>
+</div>
+
+<!-- ABOUT PAGE -->
 <div id="about-page" class="page">
   <nav>
     <div class="brand" onclick="go('home-page')">🐍 VASUKI AI</div>
@@ -230,7 +248,7 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
   </footer>
 </div>
 
-<!-- PRIVACY -->
+<!-- PRIVACY PAGE -->
 <div id="privacy-page" class="page">
   <nav>
     <div class="brand" onclick="go('home-page')">🐍 VASUKI AI</div>
@@ -276,7 +294,7 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
   </footer>
 </div>
 
-<!-- CONTACT -->
+<!-- CONTACT PAGE -->
 <div id="contact-page" class="page">
   <nav>
     <div class="brand" onclick="go('home-page')">🐍 VASUKI AI</div>
@@ -289,18 +307,4 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
   </nav>
   <div class="content-wrap">
     <h1>Contact Us</h1>
-    <p class="sub">Koi bhi sawaal ho — hum yahan hain!</p>
-    <div class="hbox"><p>📧 Email: <strong>support.vasuki@gmail.com</strong></p></div>
-    <div class="cform">
-      <h2 style="margin-top:0;color:#e2e8ff">Message Bhejo</h2>
-      <div class="fg"><label>Naam</label><input type="text" id="cn" placeholder="Apna naam"></div>
-      <div class="fg"><label>Email</label><input type="email" id="ce" placeholder="email@example.com"></div>
-      <div class="fg"><label>Subject</label><input type="text" id="cs" placeholder="Subject"></div>
-      <div class="fg"><label>Message</label><textarea id="cm" placeholder="Apna message..."></textarea></div>
-      <button class="sbtn" onclick="submitContact()">📨 Bhejo</button>
-    </div>
-  </div>
-  <footer>
-    © 2026 VasuKi AI<br>
-    <button class="footer-link" onclick="go('about-page')">About</button> |
-    <button class="footer-link" onclick="go('privac
+    <p class="sub"
