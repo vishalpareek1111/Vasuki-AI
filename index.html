@@ -68,8 +68,6 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
 .fg input:focus,.fg textarea:focus{border-color:rgba(255,123,44,0.4)}
 .fg textarea{resize:vertical;min-height:110px}
 .sbtn{background:linear-gradient(135deg,#ff7b2c,#e05500);color:#fff;border:none;border-radius:10px;padding:12px 32px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;cursor:pointer;width:100%;transition:all 0.2s}
-
-/* CHAT */
 #chat-page{height:100vh;overflow:hidden;flex-direction:column;display:none}
 #chat-page.active{display:flex}
 .cnav{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:rgba(6,8,24,0.98);border-bottom:1px solid #1f2845;flex-shrink:0}
@@ -99,8 +97,6 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
 .m.ai .bbl{background:#0e1225;border:1px solid #1f2845;border-top-left-radius:3px}
 .m.u .bbl{background:rgba(255,123,44,0.1);border:1px solid rgba(255,123,44,0.2);border-top-right-radius:3px}
 .bbl strong{color:#ffaa5c}
-.cur{display:inline-block;width:2px;height:13px;background:#ff7b2c;margin-left:2px;animation:cur 0.8s infinite;vertical-align:middle}
-@keyframes cur{0%,100%{opacity:1}50%{opacity:0}}
 .td{display:flex;gap:4px;padding:3px 0}
 .td span{width:6px;height:6px;border-radius:50%;background:#ff7b2c;animation:dt 1.4s infinite}
 .td span:nth-child(2){animation-delay:0.2s}.td span:nth-child(3){animation-delay:0.4s}
@@ -291,4 +287,7 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
       <div class="ul" id="upgrade-link">👑 Premium lo!</div>
     </div>
     <div class="ir">
-      <textarea id="inp" placeholder="Type karo ya
+      <textarea id="inp" placeholder="Kuch bhi pooch... 🐍" rows="1"></textarea>
+      <button id="vbtn" title="Voice input">🎤</button>
+      <button id="sendbtn" title="Send">
+        <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2
