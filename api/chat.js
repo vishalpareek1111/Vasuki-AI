@@ -6,37 +6,54 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Only POST allowed' });
 
-  const groqKey = process.env.GROQ_API_KEY;
+  const groqKey   = process.env.GROQ_API_KEY;
   const tavilyKey = process.env.TAVILY_API_KEY;
 
-  if (!groqKey) return res.status(500).json({ error: 'API key not configured' });
+  if (!groqKey) return res.status(500).json({ error: 'GROQ_API_KEY not set in Vercel environment variables' });
 
   const { messages } = req.body;
-  if (!messages || !messages.length) return res.status(400).json({ error: 'No messages' });
+  if (!messages || !messages.length) return res.status(400).json({ error: 'No messages provided' });
 
+  // Last user message
   const lastMsg = messages[messages.length - 1].content || '';
-  const needsSearch = /aaj|today|abhi|live|score|news|price|weather|mausam|latest|2025|2026|ipl|cricket|match|current|kaun jeet|winner/i.test(lastMsg);
+
+  // Check if real-time search is needed
+  const needsSearch = /aaj|today|abhi|live|score|news|price|weather|mausam|latest|2025|2026|ipl|cricket|match|current|kaun jeet|winner|kya hua|update|breaking/i.test(lastMsg);
 
   let searchContext = '';
+
   if (needsSearch && tavilyKey) {
     try {
       const sr = await fetch('https://api.tavily.com/search', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ api_key: tavilyKey, query: lastMsg, max_results: 3 })
+        body: JSON.stringify({
+          api_key: tavilyKey,
+          query: lastMsg,
+          max_results: 4,
+          search_depth: 'advanced',
+          include_answer: true
+        })
       });
       const sd = await sr.json();
-      if (sd.results && sd.results.length > 0) {
-        searchContext = '\n\n[Real-time search results]\n' + sd.results.map(r => '- ' + r.title + ': ' + r.content).join('\n');
+      if (sd.answer) {
+        searchContext += '\n\n[Live Search Answer]: ' + sd.answer;
       }
-    } catch (e) {}
+      if (sd.results && sd.results.length > 0) {
+        searchContext += '\n[Live Search Results]:\n' + sd.results.map(r => '- ' + r.title + ': ' + (r.content || '').slice(0, 200)).join('\n');
+      }
+    } catch (e) {
+      // Search fail ho to bhi chat chalti rahe
+      console.error('Tavily error:', e.message);
+    }
   }
 
-  const updatedMessages = [...messages];
+  // Inject search context into last user message
+  const finalMessages = [...messages];
   if (searchContext) {
-    updatedMessages[updatedMessages.length - 1] = {
+    finalMessages[finalMessages.length - 1] = {
       role: 'user',
-      content: lastMsg + searchContext
+      content: lastMsg + searchContext + '\n\nUpar diye gaye live results ke aadhar pe jawab do.'
     };
   }
 
@@ -49,15 +66,23 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         model: 'llama-3.3-70b-versatile',
-        messages: updatedMessages,
+        messages: finalMessages,
         temperature: 0.8,
         max_tokens: 1024
       })
     });
+
     const data = await r.json();
-    if (data.error) return res.status(500).json({ error: data.error.message });
+
+    if (!r.ok) {
+      const errMsg = (data && data.error && data.error.message) ? data.error.message : 'Groq API error ' + r.status;
+      return res.status(r.status).json({ error: errMsg });
+    }
+
     return res.status(200).json(data);
+
   } catch (e) {
-    return res.status(500).json({ error: e.message });
+    console.error('Groq error:', e);
+    return res.status(500).json({ error: e.message || 'Internal server error' });
   }
 }
