@@ -122,7 +122,6 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
 </style>
 </head>
 <body>
-
 <!-- HOME -->
 <div id="home-page" class="page active">
   <nav>
@@ -146,7 +145,7 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
     <div class="fc"><div class="fi">🧠</div><div class="ft">Super Smart AI</div><div class="fd">Llama 3.3 70B powered!</div></div>
     <div class="fc"><div class="fi">🇮🇳</div><div class="ft">Hindi Support</div><div class="fd">Hindi, English, Hinglish</div></div>
     <div class="fc"><div class="fi">🎤</div><div class="ft">Voice Input</div><div class="fd">Bolke pooch!</div></div>
-    <div class="fc"><div class="fi">🌐</div><div class="ft">Real-time Search</div><div class="fd">Live news aur scores!</div></div>
+    <div class="fc"><div class="fi">🔊</div><div class="ft">Voice Reply</div><div class="fd">VasuKi bolke jawab dega!</div></div>
   </div>
   <div id="pricing">
     <div class="st">Plans & Pricing</div>
@@ -156,7 +155,7 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
         <div class="pn">FREE</div>
         <div class="pp">₹0 <span>/month</span></div>
         <ul class="pf">
-          <li>20 messages/day</li><li>Hindi + English</li><li>Voice Input</li>
+          <li>20 messages/day</li><li>Hindi + English</li><li>Voice Input</li><li>Voice Reply</li>
           <li class="no">Ads dikhenge</li><li class="no">Limited messages</li>
         </ul>
         <button class="pbtn f" id="free-btn">Free Mein Shuru Karo</button>
@@ -166,7 +165,7 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
         <div class="pn">PREMIUM</div>
         <div class="pp">₹49 <span>/month</span></div>
         <ul class="pf">
-          <li>Unlimited messages</li><li>Hindi + English</li><li>Voice Input</li><li>No Ads</li><li>Priority response</li>
+          <li>Unlimited messages</li><li>Hindi + English</li><li>Voice Input</li><li>Voice Reply</li><li>No Ads</li><li>Priority response</li>
         </ul>
         <button class="pbtn p" id="premium-btn">Premium Lo</button>
       </div>
@@ -179,7 +178,6 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
     <button class="fl" id="foot-contact">Contact</button>
   </footer>
 </div>
-
 <!-- ABOUT -->
 <div id="about-page" class="page">
   <nav>
@@ -198,13 +196,12 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
     <h2>Hamara Mission</h2>
     <p>India mein crores students hain. VasuKi AI har student ko free mein ek smart study buddy dena chahta hai jo 24/7 available ho!</p>
     <h2>Features</h2>
-    <ul><li>📚 Koi bhi subject explain karna</li><li>🧮 Math step-by-step</li><li>🎤 Voice input</li><li>🌐 Real-time search</li><li>🇮🇳 Hindi, English, Hinglish</li></ul>
+    <ul><li>📚 Koi bhi subject explain karna</li><li>🧮 Math step-by-step</li><li>🎤 Voice input</li><li>🔊 Voice reply</li><li>🌐 Real-time search</li><li>🇮🇳 Hindi, English, Hinglish</li></ul>
     <h2>Contact</h2>
     <p>Email: <strong style="color:#ff7b2c">support.vasuki@gmail.com</strong></p>
   </div>
   <footer>© 2026 VasuKi AI<br><button class="fl" id="about-foot-about">About</button> | <button class="fl" id="about-foot-privacy">Privacy</button> | <button class="fl" id="about-foot-contact">Contact</button></footer>
 </div>
-
 <!-- PRIVACY -->
 <div id="privacy-page" class="page">
   <nav>
@@ -232,7 +229,6 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
   </div>
   <footer>© 2026 VasuKi AI<br><button class="fl" id="priv-foot-about">About</button> | <button class="fl" id="priv-foot-privacy">Privacy</button> | <button class="fl" id="priv-foot-contact">Contact</button></footer>
 </div>
-
 <!-- CONTACT -->
 <div id="contact-page" class="page">
   <nav>
@@ -259,7 +255,6 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
   </div>
   <footer>© 2026 VasuKi AI<br><button class="fl" id="cont-foot-about">About</button> | <button class="fl" id="cont-foot-privacy">Privacy</button> | <button class="fl" id="cont-foot-contact">Contact</button></footer>
 </div>
-
 <!-- CHAT -->
 <div id="chat-page">
   <div class="cnav">
@@ -288,19 +283,16 @@ footer{text-align:center;padding:20px 24px;color:#4a5480;font-size:12px;border-t
     </div>
     <div class="ir">
       <textarea id="inp" placeholder="Kuch bhi pooch... 🐍" rows="1"></textarea>
+      <button id="stopbtn" title="Stop speaking" onclick="stopSpeaking()" style="display:none;width:34px;height:34px;border-radius:9px;background:rgba(255,80,80,0.2);border:1px solid #ff4444;cursor:pointer;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;">🔇</button>
       <button id="vbtn" title="Voice input">🎤</button>
       <button id="sendbtn" title="Send">
         <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
-        </button>
+      </button>
     </div>
     <div class="iff">Powered by Groq + Tavily • Made with ❤️ in India</div>
   </div>
 </div>
-
-<script>
-// ========================================
-// VASUKI AI — All JavaScript Inline
-// ========================================
+  <script>
 var msgs = [];
 var isLoading = false;
 var msgCount = 0;
@@ -313,20 +305,13 @@ var SYSTEM = {
   content: 'Tu hai VasuKi AI — ek smart, friendly aur helpful AI assistant hai jo Indian students ke liye bana hai. Tu Hindi, English, aur Hinglish teeno mein baat kar sakta hai. Tu Mathematics, Science, History, Geography, Current Affairs, Coding — sab subjects mein expert hai. Tu hamesha clear, step-by-step aur easy language mein samjhata hai. Jab user Hindi ya Hinglish mein pooche to Hindi mein jawab de. Jab English mein pooche to English mein jawab de.'
 };
 
-// ── PAGE NAVIGATION ──
 function showPage(pageId) {
-  document.querySelectorAll('.page').forEach(function(p) {
-    p.classList.remove('active');
-  });
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
   var cp = document.getElementById('chat-page');
   if (cp) { cp.classList.remove('active'); cp.style.display = 'none'; }
-
   if (pageId === 'chat-page') {
     if (cp) { cp.style.display = 'flex'; cp.classList.add('active'); }
-    setTimeout(function() {
-      var i = document.getElementById('inp');
-      if (i) i.focus();
-    }, 100);
+    setTimeout(function() { var i=document.getElementById('inp'); if(i) i.focus(); }, 100);
   } else {
     var t = document.getElementById(pageId);
     if (t) t.classList.add('active');
@@ -334,9 +319,7 @@ function showPage(pageId) {
   }
 }
 
-// ── BIND ALL BUTTONS ──
 document.addEventListener('DOMContentLoaded', function() {
-  // HOME
   c('brand-home',    function(){ showPage('home-page'); });
   c('nav-about',     function(){ showPage('about-page'); });
   c('nav-privacy',   function(){ showPage('privacy-page'); });
@@ -349,7 +332,6 @@ document.addEventListener('DOMContentLoaded', function() {
   c('foot-about',    function(){ showPage('about-page'); });
   c('foot-privacy',  function(){ showPage('privacy-page'); });
   c('foot-contact',  function(){ showPage('contact-page'); });
-  // ABOUT
   c('about-brand',        function(){ showPage('home-page'); });
   c('about-nav-about',    function(){ showPage('about-page'); });
   c('about-nav-privacy',  function(){ showPage('privacy-page'); });
@@ -358,7 +340,6 @@ document.addEventListener('DOMContentLoaded', function() {
   c('about-foot-about',   function(){ showPage('about-page'); });
   c('about-foot-privacy', function(){ showPage('privacy-page'); });
   c('about-foot-contact', function(){ showPage('contact-page'); });
-  // PRIVACY
   c('priv-brand',        function(){ showPage('home-page'); });
   c('priv-nav-about',    function(){ showPage('about-page'); });
   c('priv-nav-privacy',  function(){ showPage('privacy-page'); });
@@ -367,7 +348,6 @@ document.addEventListener('DOMContentLoaded', function() {
   c('priv-foot-about',   function(){ showPage('about-page'); });
   c('priv-foot-privacy', function(){ showPage('privacy-page'); });
   c('priv-foot-contact', function(){ showPage('contact-page'); });
-  // CONTACT
   c('cont-brand',        function(){ showPage('home-page'); });
   c('cont-nav-about',    function(){ showPage('about-page'); });
   c('cont-nav-privacy',  function(){ showPage('privacy-page'); });
@@ -377,14 +357,12 @@ document.addEventListener('DOMContentLoaded', function() {
   c('cont-foot-about',   function(){ showPage('about-page'); });
   c('cont-foot-privacy', function(){ showPage('privacy-page'); });
   c('cont-foot-contact', function(){ showPage('contact-page'); });
-  // CHAT
   c('chat-brand',   function(){ showPage('home-page'); });
   c('back-btn',     function(){ showPage('home-page'); });
   c('sendbtn',      function(){ sendMessage(); });
   c('vbtn',         function(){ toggleVoice(); });
   c('upgrade-link', function(){ alert('Premium coming soon!'); });
 
-  // Suggestion chips
   document.querySelectorAll('.sg').forEach(function(btn) {
     btn.addEventListener('click', function() {
       var s = this.getAttribute('data-sug');
@@ -392,20 +370,23 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Textarea
   var inp = document.getElementById('inp');
   if (inp) {
     inp.addEventListener('input', function() {
-      this.style.height = 'auto';
-      this.style.height = Math.min(this.scrollHeight, 110) + 'px';
+      this.style.height='auto';
+      this.style.height=Math.min(this.scrollHeight,110)+'px';
     });
     inp.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+      if (e.key==='Enter'&&!e.shiftKey) { e.preventDefault(); sendMessage(); }
     });
   }
 
   loadMsgCount();
   setupVoice();
+  if (window.speechSynthesis) {
+    window.speechSynthesis.getVoices();
+    window.speechSynthesis.onvoiceschanged = function() { window.speechSynthesis.getVoices(); };
+  }
 });
 
 function c(id, fn) {
@@ -413,35 +394,28 @@ function c(id, fn) {
   if (el) el.addEventListener('click', fn);
 }
 
-// ── SEND MESSAGE ──
 async function sendMessage() {
   if (isLoading) return;
   var inp = document.getElementById('inp');
   if (!inp) return;
   var text = inp.value.trim();
   if (!text) return;
-
   if (msgCount >= MSG_LIMIT) {
     setStatus('Aaj ke 20 messages khatam! Kal wapas aao ya Premium lo 👑');
     return;
   }
-
   var welcome = document.getElementById('welcome');
   if (welcome) welcome.style.display = 'none';
-
   addMsg('u', text);
   msgs.push({ role: 'user', content: text });
   inp.value = '';
   inp.style.height = 'auto';
-
   msgCount++;
   saveMsgCount();
   var mc = document.getElementById('mc');
   if (mc) mc.textContent = msgCount;
-
   setLoading(true);
   var tid = showTyping();
-
   try {
     var payload = [SYSTEM].concat(msgs.slice(-14));
     var res = await fetch('/api/chat', {
@@ -451,11 +425,12 @@ async function sendMessage() {
     });
     var data = await res.json();
     if (!res.ok) throw new Error(data.error || 'Error ' + res.status);
-    var reply = data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+    var reply = data&&data.choices&&data.choices[0]&&data.choices[0].message&&data.choices[0].message.content;
     if (!reply) throw new Error('Khaali response');
     hideTyping(tid);
     addMsg('ai', reply);
     msgs.push({ role: 'assistant', content: reply });
+    speakText(reply);
     setStatus('');
   } catch(e) {
     hideTyping(tid);
@@ -468,13 +443,12 @@ async function sendMessage() {
   }
 }
 
-// ── RENDER ──
 function addMsg(role, text) {
   var ml = document.getElementById('mlist');
   if (!ml) return;
   var row = document.createElement('div'); row.className = 'm ' + role;
   var av = document.createElement('div'); av.className = 'av ' + role;
-  av.textContent = role === 'ai' ? '🐍' : '👤';
+  av.textContent = role==='ai' ? '🐍' : '👤';
   var bbl = document.createElement('div'); bbl.className = 'bbl';
   bbl.innerHTML = fmt(text);
   row.appendChild(av); row.appendChild(bbl); ml.appendChild(row);
@@ -495,7 +469,43 @@ function showTyping() {
 
 function hideTyping(id) { var e = document.getElementById(id); if(e) e.remove(); }
 
-// ── FORMATTER ──
+var isSpeaking = false;
+function speakText(text) {
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  var clean = text.replace(/<[^>]*>/g,'').replace(/[#*`_]/g,'').trim();
+  if (!clean) return;
+  var utt = new SpeechSynthesisUtterance(clean);
+  utt.lang = 'hi-IN';
+  utt.rate = 1.0;
+  utt.pitch = 1.0;
+  utt.volume = 1.0;
+  var voices = window.speechSynthesis.getVoices();
+  var hindiVoice = voices.find(function(v){ return v.lang==='hi-IN'; });
+  if (hindiVoice) utt.voice = hindiVoice;
+  utt.onstart = function() {
+    isSpeaking = true;
+    var sb = document.getElementById('stopbtn');
+    if (sb) sb.style.display = 'flex';
+    setStatus('🔊 Bol raha hoon...');
+  };
+  utt.onend = utt.onerror = function() {
+    isSpeaking = false;
+    var sb = document.getElementById('stopbtn');
+    if (sb) sb.style.display = 'none';
+    setStatus('');
+  };
+  window.speechSynthesis.speak(utt);
+}
+
+function stopSpeaking() {
+  window.speechSynthesis.cancel();
+  isSpeaking = false;
+  var sb = document.getElementById('stopbtn');
+  if (sb) sb.style.display = 'none';
+  setStatus('');
+}
+
 function fmt(t) {
   if (!t) return '';
   t = t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -511,7 +521,6 @@ function fmt(t) {
   return t;
 }
 
-// ── VOICE ──
 function setupVoice() {
   var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (!SR) { var v=document.getElementById('vbtn'); if(v) v.style.display='none'; return; }
@@ -544,12 +553,12 @@ function toggleVoice() {
   } else {
     try {
       recognition.start(); isRecording=true;
+      stopSpeaking();
       if(v){v.classList.add('on');v.textContent='⏹';} setStatus('🎤 Sun raha hoon...');
     } catch(e) { setStatus('Voice shuru nahi hua'); }
   }
 }
 
-// ── CONTACT ──
 function submitContact() {
   var n=document.getElementById('cn'), e=document.getElementById('ce'), m=document.getElementById('cm');
   if(!n||!n.value.trim()){alert('Naam bharo!');return;}
@@ -558,7 +567,6 @@ function submitContact() {
   if(n)n.value=''; if(e)e.value=''; var s=document.getElementById('cs'); if(s)s.value=''; if(m)m.value='';
 }
 
-// ── MSG COUNT ──
 function loadMsgCount() {
   var today = new Date().toDateString();
   if (localStorage.getItem('vk_d') !== today) {
@@ -568,7 +576,6 @@ function loadMsgCount() {
 }
 function saveMsgCount() { localStorage.setItem('vk_c', String(msgCount)); }
 
-// ── UTILS ──
 function setLoading(v) {
   isLoading=v;
   var sb=document.getElementById('sendbtn'), inp=document.getElementById('inp');
@@ -586,3 +593,4 @@ function getErr(e) {
 </script>
 </body>
 </html>
+        
